@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from "react";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -52,6 +53,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const SearchAppBar = () => {
+    const [name, setName] = useState('')
+    const inputValue = (e) => {
+      setName(e.target.value);
+      console.log(name)
+    }
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -71,7 +77,7 @@ const SearchAppBar = () => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
                     >
-                        Search GitHub Repositories
+                        Search GitHub Repository              
                     </Typography>
                     <Search>
                         <SearchIconWrapper>
@@ -80,6 +86,7 @@ const SearchAppBar = () => {
                         <StyledInputBase
                             placeholder="Search…"
                             inputProps={{ 'aria-label': 'search' }}
+                            onChange={inputValue}
                         />
                     </Search>
                 </Toolbar>
